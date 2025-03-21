@@ -38,7 +38,7 @@ function showDemoArray() {
     <pre>
         <code class="custom-code">
           const iterable = ['1', '2', '3'];
-          // "low-level" iterator consumption:
+
           const iterator = iterable[Symbol.iterator]();
           iterator.next(); // { value: '1', done: false }
           iterator.next(); // { value: '2', done: false }
@@ -78,7 +78,7 @@ function showDemoArray() {
     </template>
     <template #heading> Where can I use this? </template>
       <ul>
-        <li> Use a generator with <code> yield </code> for async handling. </li>
+        <li> Use a generator with <code>yield</code> for async handling. </li>
         <pre>
           <code class="custom-code">
             async function* asyncHandler () {
@@ -97,7 +97,7 @@ function showDemoArray() {
             while (true) {
               const response = await fetch(`fancy-api-call-here-for-paginated data`);
               if (response.length === 0) return;
-              yield data;
+              yield* response;
               page++;
             }
           }
