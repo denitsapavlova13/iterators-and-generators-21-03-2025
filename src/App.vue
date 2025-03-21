@@ -4,21 +4,41 @@ import List from './components/List.vue';
 const iteratableArrayOfNumbers = [1, 2, 3, 4, 5];
 
 const iteratableArrayOfStrings = ['John', 'Jane', 'Mary', 'Pete'];
+
 const result = iteratableArrayOfStrings.filter(name => name.includes('a')).map(name => `The name of the person is ${name}`);
 
-
-function reverseArrayIterator (array: number[]){
-  // TO DO: Implement the reverseArrayIterator function
-  // Hint: Use the Symbol.iterator property
+function reverseArrayIterator(array: number[]) {
+  return{
+    [Symbol.iterator](){
+      let index = array.length;
+      return {
+        next() {
+          return {
+            value: array[--index],
+            done: index < 0,
+          }
+        }
+      }
+    }
+  }
 }
 
 function* reverseArrayGenerator(array: number[]) {
-  // TO DO: Implement the reverseArrayGenerator function
-  // Hint: Use the yield keyword
+  let index = array.length;
+  while(index > 0)
+  {
+    yield array[--index];
+  }
 }
 
+
+
 function* formatNames(names: string[]){
-  // TO DO: Implement the formatNames generator function
+  for(const name of names){
+    if (name.includes("y")) {
+      yield `The name of the person is ${name}`;
+    }
+  }
 }
 
 </script>
